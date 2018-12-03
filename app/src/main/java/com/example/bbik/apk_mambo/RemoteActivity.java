@@ -10,50 +10,14 @@ import android.view.View;
 import android.widget.Button;
 
 public class RemoteActivity extends AppCompatActivity{
+    Intent intent;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.remote);
 
-        Intent intent = new Intent(this.getIntent());
-
-        class RemoteBtn implements Button.OnClickListener{
-            @Override
-            public void onClick(View view){
-                switch (view.getId()){
-                    case R.id.up_mambo:
-                        Log.d("Log","UP MAMBO");
-                        break;
-                    case R.id.left_mambo:
-                        Log.d("Log","LEFT MAMBO");
-                        break;
-                    case R.id.right_mambo:
-                        Log.d("Log","RIGHT MAMBO");
-                        break;
-                    case R.id.down_mambo:
-                        Log.d("Log","DOWN MAMBO");
-                        break;
-                    case R.id.front_mambo:
-                        Log.d("Log","GO FRONT MAMBO");
-                        break;
-                    case R.id.back_mambo:
-                        Log.d("Log","GO BACK MAMBO");
-                        break;
-                    case R.id.lturn_mambo:
-                        Log.d("Log","TURN LEFT MAMBO");
-                        break;
-                    case R.id.rturn_mambo:
-                        Log.d("Log","TURN RIGHT MAMBO");
-                        break;
-                    case R.id.takeoff_mambo:
-                        Log.d("Log","Take Off MAMBO");
-                        break;
-                    case R.id.land_mambo:
-                        Log.d("Log","Land MAMBO");
-                        break;
-                }
-            }
-        }
+        intent = getIntent();
+        Log.d("Log","Hi Remote");
 
         RemoteBtn onClickListener = new RemoteBtn();
 
@@ -80,5 +44,43 @@ public class RemoteActivity extends AppCompatActivity{
 
 
 
+    }
+
+    public class RemoteBtn implements Button.OnClickListener{
+        @Override
+        public void onClick(View view){
+            switch (view.getId()){
+                case R.id.up_mambo:
+                    Log.d("Log","UP MAMBO");
+                    break;
+                case R.id.left_mambo:
+                    Log.d("Log","LEFT MAMBO");
+                    break;
+                case R.id.right_mambo:
+                    Log.d("Log","RIGHT MAMBO");
+                    break;
+                case R.id.down_mambo:
+                    Log.d("Log","DOWN MAMBO");
+                    break;
+                case R.id.front_mambo:
+                    Log.d("Log","GO FRONT MAMBO");
+                    break;
+                case R.id.back_mambo:
+                    Log.d("Log","GO BACK MAMBO");
+                    break;
+                case R.id.lturn_mambo:
+                    Log.d("Log","TURN LEFT MAMBO");
+                    break;
+                case R.id.rturn_mambo:
+                    Log.d("Log","TURN RIGHT MAMBO");
+                    break;
+                case R.id.takeoff_mambo:
+                    Log.d("Log","Take Off MAMBO");
+                    break;
+                case R.id.land_mambo:
+                    Log.d("Log","Land MAMBO");
+                    break;
+            }
+        }
     }
 }

@@ -1,6 +1,16 @@
 package com.example.bbik.apk_mambo;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.NetworkInfo;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pDeviceList;
+import android.net.wifi.p2p.WifiP2pInfo;
+import android.net.wifi.p2p.WifiP2pManager;
+import android.se.omapi.Channel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +19,15 @@ import android.widget.Button;
 
 import com.parrot.arsdk.ARSDK;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    private static final String TAG = "Apk_Mambo";
+
+
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -21,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         MainBtn onClickListener = new MainBtn();
+
 
         Button buttonConnect=(Button)findViewById(R.id.connect_mambo);
         buttonConnect.setOnClickListener(onClickListener);
@@ -31,7 +49,14 @@ public class MainActivity extends AppCompatActivity {
         Button buttonRemote=(Button)findViewById(R.id.remote_mambo);
         buttonRemote.setOnClickListener(onClickListener);
 
+
     }
+
+
+
+
+
+
 
     class MainBtn implements Button.OnClickListener{
         @Override
@@ -39,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             switch (view.getId()){
                 case R.id.connect_mambo:
                     Log.d("Log","CONNECT MAMBO");
+                    Intent wifi_intent= new Intent(MainActivity.this,WiFiDirectActivity.class);
+                    startActivity(wifi_intent);
                     break;
 
                 case R.id.start_mambo:
@@ -46,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.remote_mambo:
                     Log.d("Log","REMOTE MAMBO");
-                    Intent intent= new Intent(MainActivity.this,RemoteActivity.class);
-                    startActivity(intent);
+                    Intent remote_intent= new Intent(MainActivity.this,RemoteActivity.class);
+                    startActivity(remote_intent);
                     break;
             }
         }
